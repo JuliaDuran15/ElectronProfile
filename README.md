@@ -14,9 +14,9 @@ Este projeto é um sistema simples de cadastro de usuários implementado com HTM
 
 Para começar com este projeto, siga estas etapas:
 1. Clone o repositório para sua máquina local:
-   ```bash
-   git clone https://github.com/JuliaDuran15/ElectronTest
-   ```
+```bash
+git clone https://github.com/JuliaDuran15/ElectronTest
+ ```
 2. Navegue até o diretório do projeto:
 ```bash
 cd seu-nome-de-projeto
