@@ -61,3 +61,9 @@ npm install express mysql2@latest concurrently
 ```bash
 npm start
 ```
+
+##Obs: Caso exista erro em relação á conexão MySql, rodar os seguintes comandos do MySql Commando line:
+```bash
+ALTER USER 'yourusername'@'yourhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
+FLUSH PRIVILEGES;
+```
