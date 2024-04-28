@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif; /* Modern, legible font */
+  background-color: #f7f7f7; /* Lighter background for softer contrast */
+  color: #4a4a4a; /* Slightly darker text for better readability */
+  line-height: 1.6; /* Improved line spacing */
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto; /* Reduced top margin */
+  padding: 20px; /* More padding for better spacing */
+  background-color: #fff;
+  border-radius: 10px; /* Slightly larger radius for a softer look */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  text-align: center;
+  font-size: 16px; /* Universal font size for readability */
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 24px; /* Larger font size for headers */
+  padding-bottom: 10px; /* Added padding for visual separation */
+  border-bottom: 1px solid #eeeeee; /* Subtle line to separate the header */
+}
+
+
+  
+.button-container {
+  margin-top: 25px;
+  display: flex; /* Utilizing flexbox for better button alignment */
+  justify-content: center; /* Centers buttons in the container */
+  flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+}
+
+.btn {
+  padding: 12px 25px; /* Larger padding for a more clickable area */
+  margin: 10px; /* Adds margin around buttons for spacing */
+  border: none;
+  border-radius: 5px; /* Rounded edges for a modern look */
+  background-color: #3498db;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600; /* Making the font weight bolder */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Added transform for effect */
+  outline: none; /* Removes focus outline for aesthetic reasons */
+}
+
+.btn:hover, .btn:focus {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Slightly enlarges buttons on hover/focus */
+}
+
+.btn:active {
+  transform: scale(0.95); /* Subtle click effect */
+}
