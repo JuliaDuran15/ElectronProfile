@@ -62,7 +62,15 @@ npm install express mysql2@latest concurrently
 npm start
 ```
 
-5. Docker
+5. No CMD, instale a imagem MySQL no docker
+```bash
+docker pull mysql
+```
+
+6. Agora, gere o contâiner MySQL (não se esqueça de mudar o parâmetro da password)
+```bash
+docker run --name [sistema_usuario] -e MYSQL_ROOT_PASSWORD=[sua senha] -d mysql:latest
+```
 
 ## Obs: Caso exista erro em relação á conexão MySql, rodar os seguintes comandos do MySql Commando line:
 ```bash
