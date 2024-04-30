@@ -68,3 +68,6 @@ docker-compose up -d
 ```bash
 npm start
 ```
+8. Para Logar pela primeira vez:
+- E-mail: admin@exemplo.com
+- Senha: senhaadmin
