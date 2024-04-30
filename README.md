@@ -21,25 +21,14 @@ git clone https://github.com/JuliaDuran15/ElectronTest
 ```bash
 cd seu-nome-de-projeto
 ```
-
-3. Insira no seu Mysql Command Line:
+3. Rode o Docker-Compose:
 ```bash
-DROP database if exists sistema_usuario;
-create database if not exists sistema_usuario;
-USE sistema_usuario;
- CREATE TABLE usuarios (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	nome VARCHAR(255),
-	email VARCHAR(255),
-	senha VARCHAR(255),
-  cep VARCHAR(45),
-	rua VARCHAR(45),
-	bairro VARCHAR(45),
-  localidade VARCHAR(255),
-  UF VARCHAR(45)
-  );
+docker pull mysql
 ```
-4. Altere o arquivo database:
+```bash
+docker-compose up -d
+```
+4. Altere o arquivo database :
 ```bash
 const connection = mysql.createConnection({
   host: 'seu_host',
@@ -49,7 +38,24 @@ const connection = mysql.createConnection({
   database: 'sistema_usuario'
 });
 ```
+5. Altere o arquivo docker-compose.ywl :
+```bash
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: sua_senha
+      MYSQL_DATABASE: sistema_usuario
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
 
+volumes:
+  mysql_data:
+
+```
 5. Se aplicável, instale as dependências:
 ```bash
 npm install electron  
@@ -57,23 +63,7 @@ npm install electron
 ```bash
 npm install express mysql2@latest concurrently   
 ```
-4. Para iniciar o aplicativo
+6. Para iniciar o aplicativo
 ```bash
 npm start
-```
-
-5. No CMD, instale a imagem MySQL no docker
-```bash
-docker pull mysql
-```
-
-6. Agora, gere o contâiner MySQL (não se esqueça de mudar o parâmetro da password)
-```bash
-docker run --name [sistema_usuario] -e MYSQL_ROOT_PASSWORD=[sua senha] -d mysql:latest
-```
-
-## Obs: Caso exista erro em relação á conexão MySql, rodar os seguintes comandos do MySql Commando line:
-```bash
-ALTER USER 'yourusername'@'yourhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
-FLUSH PRIVILEGES;
 ```
