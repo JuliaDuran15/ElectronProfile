@@ -12,16 +12,17 @@ connection.connect((err) => {
   if (err) throw err;
   console.log('Conectado ao banco de dados MySQL!');
 
-
-connection.query("CREATE DATABASE IF NOT EXISTS sistema_usuario", (err, result) => {
+ // Tenta criar o banco de dados apenas se não existir (embora já esteja especificado na conexão)
+ connection.query("CREATE DATABASE IF NOT EXISTS sistema_usuario", (err, result) => {
   if (err) {
     console.error('Erro ao criar o banco de dados:', err);
     return;
   }
   console.log("Database 'sistema_usuario' created");
 
-  const sql = `
-    CREATE TABLE IF NOT EXISTS customers (
+  // Criar a tabela 'customers' se não existir
+  const sqlTable = `
+    CREATE TABLE IF NOT EXISTS usuarios (
       id INT AUTO_INCREMENT PRIMARY KEY,
       nome VARCHAR(255),
       senha VARCHAR(255),
@@ -34,11 +35,23 @@ connection.query("CREATE DATABASE IF NOT EXISTS sistema_usuario", (err, result) 
     )
   `;
 
-  connection.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Table 'customers' created");
+  connection.query(sqlTable, (err, result) => {
+    if (err) {
+      console.error('Erro ao criar tabela:', err);
+      return;
+    }
+    console.log("Table 'usuarios' created");
+
+    // Insere um usuário pré-definido na tabela 'customers'
+    const sqlInsert = "INSERT INTO usuarios (nome, email, senha, cep, rua, bairro, localidade, uf) VALUES ('admin', 'admin@exemplo.com', 'senhaadmin', NULL, NULL, NULL, NULL, NULL)";
+    connection.query(sqlInsert, (error, results) => {
+      if (error) {
+        console.error('Erro ao cadastrar usuário no MySQL:', error);
+      } else {
+        console.log('Usuário cadastrado com sucesso no MySQL!');
+      }
+    });
   });
 });
 });
-
 module.exports = connection;
