@@ -21,14 +21,7 @@ git clone https://github.com/JuliaDuran15/ElectronTest
 ```bash
 cd seu-nome-de-projeto
 ```
-3. Rode o Docker-Compose:
-```bash
-docker pull mysql
-```
-```bash
-docker-compose up -d
-```
-4. Altere o arquivo database :
+3. Altere o arquivo database :
 ```bash
 const connection = mysql.createConnection({
   host: 'seu_host',
@@ -38,7 +31,7 @@ const connection = mysql.createConnection({
   database: 'sistema_usuario'
 });
 ```
-5. Altere o arquivo docker-compose.ywl :
+4. Altere o arquivo docker-compose.ywl :
 ```bash
 version: '3.8'
 services:
@@ -61,9 +54,20 @@ volumes:
 npm install electron  
 ```
 ```bash
-npm install express mysql2@latest concurrently   
+npm install express mysql2@latest concurrently
 ```
-6. Para iniciar o aplicativo
+
+6. Rode o Docker-Compose:
+```bash
+docker pull mysql
+```
+```bash
+docker-compose up -d
+```
+7. Para iniciar o aplicativo
 ```bash
 npm start
 ```
+8. Para Logar pela primeira vez:
+- E-mail: admin@exemplo.com
+- Senha: senhaadmin
