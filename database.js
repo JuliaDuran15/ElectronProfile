@@ -5,7 +5,10 @@ const connection = mysql.createConnection({
   port: 3307,
   user: 'root',
   password: 'julia12345xastre',
-  database: 'sistema_usuario'
+  database: 'sistema_usuario',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 connection.connect((err) => {
@@ -42,16 +45,31 @@ connection.connect((err) => {
     }
     console.log("Table 'usuarios' created");
 
-    // Insere um usuário pré-definido na tabela 'customers'
-    const sqlInsert = "INSERT INTO usuarios (nome, email, senha, cep, rua, bairro, localidade, uf) VALUES ('admin', 'admin@exemplo.com', 'senhaadmin', NULL, NULL, NULL, NULL, NULL)";
-    connection.query(sqlInsert, (error, results) => {
-      if (error) {
-        console.error('Erro ao cadastrar usuário no MySQL:', error);
-      } else {
-        console.log('Usuário cadastrado com sucesso no MySQL!');
-      }
-    });
+    // Verifica se o email 'admin@exemplo.com' já existe na tabela 'usuarios'
+    checkAndInsertAdmin();
   });
 });
-});
+
+function checkAndInsertAdmin() {
+  const emailToCheck = 'admin@exemplo.com';
+  connection.query('SELECT * FROM usuarios WHERE email = ?', [emailToCheck], (error, results) => {
+    if (error) {
+      console.error('Erro ao verificar usuário:', error);
+      return;
+    }
+    if (results.length > 0) {
+      console.log('Usuário com o email admin@exemplo.com já existe!');
+    } else {
+      // Insere o usuário admin se ele não existir
+      const sqlInsert = "INSERT INTO usuarios (nome, email, senha, cep, rua, bairro, localidade, uf) VALUES ('admin', 'admin@exemplo.com', 'senhaadmin', NULL, NULL, NULL, NULL, NULL)";
+      connection.query(sqlInsert, (error, results) => {
+        if (error) {
+          console.error('Erro ao cadastrar usuário no MySQL:', error);
+        } else {
+          console.log('Usuário administrador cadastrado com sucesso no MySQL!');
+        }
+      });
+    }
+  });
+}});
 module.exports = connection;
