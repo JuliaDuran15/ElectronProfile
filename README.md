@@ -25,7 +25,7 @@ cd seu-nome-de-projeto
 ```bash
 const connection = mysql.createConnection({
   host: 'seu_host',
-  port: 3306,
+  port: 3307,
   user: 'seu_usuario',
   password: 'sua_senha',
   database: 'sistema_usuario'
