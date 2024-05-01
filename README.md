@@ -4,7 +4,7 @@ Este projeto é um sistema simples de cadastro de usuários implementado com HTM
 
 ## Funcionalidades
 
-- Formulário de cadastro de usuário com campos para nome, email, senha e endereço.
+- Formulário de cadastro de usuário com campos para nome, email, senha e endereço. 
 - Função de logar, casdastrar, visualizar usuarios e seus endereços
 - Validação de CEPs com chamadas API em tempo real.
 - Design responsivo para acessibilidade em diversos dispositivos.
